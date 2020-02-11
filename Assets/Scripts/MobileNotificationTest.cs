@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using Unity.Notifications.Android;
 using UnityEngine;
@@ -26,6 +24,7 @@ public class MobileNotificationTest : MonoBehaviour
         msg += "\n .Title: " + data.Notification.Title;
         msg += "\n .Body: " + data.Notification.Text;
         msg += "\n .Channel: " + data.Channel;
+        Log(msg);
         Debug.Log(msg);
         
         // NOTE(JJO): 알림 온 것을 눌러서 게임을 실행해도 알림이 지워지지 않을 것이므로 Callback에서 지워야 함.
