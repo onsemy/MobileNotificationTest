@@ -13,7 +13,11 @@ public class MobileNotificationTest : MonoBehaviour
 
     private void Awake()
     {
-        AndroidNotificationCenter.Initialize();
+        if (AndroidNotificationCenter.Initialize() == false)
+        {
+            Log("[MobileNotificationTest::Awake] Failed Initialize");
+            return;
+        }
         AndroidNotificationCenter.OnNotificationReceived += OnNotificationReceived;
     }
 
@@ -44,18 +48,18 @@ public class MobileNotificationTest : MonoBehaviour
         {
             AndroidNotificationCenter.RegisterNotificationChannel(c);
 
-            Log("[MobileNotificationTest::OnClickSendNotification] Register!");
+            Log("[MobileNotificationTest::OnClickRegister] Register!");
         }
         catch (Exception e)
         {
-            Log($"[MobileNotificationTest::OnClickSendNotification] Failed Register! - {e}");
+            Log($"[MobileNotificationTest::OnClickRegister] Failed Register! - {e}");
         }
     }
 
     public void OnClickUnregister()
     {
         AndroidNotificationCenter.DeleteNotificationChannel("channel_id");
-        Log("[MobileNotificationTest::OnClickSendNotification] Do unregister notification!");
+        Log("[MobileNotificationTest::OnClickUnregister] Do unregister notification!");
     }
 
     public void OnClickSendNotification()
